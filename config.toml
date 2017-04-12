@@ -1,0 +1,35 @@
+baseurl = "/"
+title = "Yihui's Twitter Feeds"
+author = "Yihui Xie"
+languagecode = "en"
+theme = "hugo-black-and-light-theme"
+[permalinks]
+  post = "/post/:year/:month/:day/"
+
+[params]
+  sitename = "Yihui's Twitter Feeds"
+
+[[menu.main]]
+    name = "Home"
+    url  = "/"
+    weight = 1
+[[menu.main]]
+    name = "About"
+    url  = "/about/"
+    weight = 2
+[[menu.main]]
+    name = "Blogdown"
+    url  = "https://github.com/rstudio/blogdown"
+    weight = 3
+[[menu.main]]
+    name = "RSS"
+    url  = "/index.xml"
+    weight = 4
+[[menu.main]]
+    name = "Yihui's Homepage"
+    url  = "https://yihui.name"
+    weight = 5
+[[menu.main]]
+    name = "Github"
+    url  = "https://github.com/yihui/twitter-blogdown"
+    weight = 6

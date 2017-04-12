@@ -1,0 +1,17 @@
+language: r
+sudo: false
+cache: packages
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_7f75e7b0e048_key -iv $encrypted_7f75e7b0e048_iv -in twitter_token.rds.enc -out twitter_token.rds -d
+  - git config --global user.email "xie@yihui.name"
+  - git config --global user.name "Yihui Xie"
+
+script:
+  - Rscript R/fetch.R
+
+after_success:
+  - git remote add deploy https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git
+  - git add --all *
+  - git commit -m"Daily update"
+  - git push -q deploy master
