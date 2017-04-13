@@ -1,7 +1,6 @@
 Sys.setenv(TWITTER_PAT = 'twitter_token.rds')
 dir.create('content/post', showWarnings = FALSE)
 
-library(rtweet)
 if (!file.exists(f <- 'R/keywords.csv')) writeLines('query,since_id', f)
 m = read.csv(f, colClasses = 'character')
 d = as.character(Sys.Date())
@@ -10,7 +9,7 @@ x = NULL; t = paste('Tweets on', d); n = 0  # markdown text, post title, and fav
 for (i in seq_len(NROW(m))) {
   q = m[i, 'query']
   s = rtweet::search_tweets(q, include_rts = FALSE, since_id = m[i, 'since_id'])
-  if (NROW(s) == 0) next
+  if (NROW(s) == 0 || is.na(s$favorite_count[1])) next
 
   m[i, 'since_id'] = s$status_id[1]  # update since_id for newer results next time
   k = order(s$favorite_count, s$retweet_count, decreasing = TRUE)
