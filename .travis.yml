@@ -11,7 +11,7 @@ script:
   - Rscript R/fetch.R
 
 after_success:
-  - git remote add deploy https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git
+  - rm tweet_token.rds
   - git add --all *
   - git commit -m"Daily update"
-  - git push -q deploy master
+  - git push -q https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git master
