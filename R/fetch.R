@@ -1,9 +1,14 @@
 Sys.setenv(TWITTER_PAT = 'twitter_token.rds')
 dir.create('content/post', showWarnings = FALSE)
+d = Sys.Date()
+
+if (file.exists(f <- 'R/last_day')) {
+  if (d <= as.Date(readLines(f)) && !interactive()) q('no')
+} else writeLines(d, f)
 
 if (!file.exists(f <- 'R/keywords.csv')) writeLines('query,since_id', f)
 m = read.csv(f, colClasses = 'character')
-d = as.character(Sys.Date())
+d = as.character(d)
 x = NULL; t = paste('Tweets on', d); n = 0  # markdown text, post title, and favorite count
 
 for (i in seq_len(NROW(m))) {
