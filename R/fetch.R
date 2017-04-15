@@ -2,9 +2,9 @@ Sys.setenv(TWITTER_PAT = 'twitter_token.rds')
 dir.create('content/post', showWarnings = FALSE)
 d = Sys.Date()
 
-if (file.exists(f <- 'R/last_day')) {
-  if (d <= as.Date(readLines(f)) && !interactive()) q('no')
-} else writeLines(as.character(d), f)
+p = list.files('content/post/', '^\\d{4,}-\\d{2}-\\d{2}[.]md$')
+p = max(as.Date(gsub('.md$', '', p)))
+if (length(p) && d <= p && !interactive()) q('no')
 
 if (!file.exists(f <- 'R/keywords.csv')) writeLines('query,since_id', f)
 m = read.csv(f, colClasses = 'character')
