@@ -4,7 +4,7 @@ d = Sys.Date()
 
 if (file.exists(f <- 'R/last_day')) {
   if (d <= as.Date(readLines(f)) && !interactive()) q('no')
-} else writeLines(d, f)
+} else writeLines(as.character(d), f)
 
 if (!file.exists(f <- 'R/keywords.csv')) writeLines('query,since_id', f)
 m = read.csv(f, colClasses = 'character')
