@@ -33,3 +33,6 @@ theme = "hugo-black-and-light-theme"
     name = "Github"
     url  = "https://github.com/yihui/twitter-blogdown"
     weight = 6
+
+[blackfriday]
+  hrefTargetBlank = true
