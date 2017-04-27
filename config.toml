@@ -3,6 +3,8 @@ title = "Yihui's Twitter Feeds"
 author = "Yihui Xie"
 languagecode = "en"
 theme = "hugo-black-and-light-theme"
+paginate = 10
+
 [permalinks]
   post = "/post/:year/:month/:day/"
 

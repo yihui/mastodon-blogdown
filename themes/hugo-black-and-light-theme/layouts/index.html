@@ -1,8 +1,9 @@
 {{ partial "header.html" . }}
 
 <section id=content>
+{{ $paginator := .Paginate (where .Data.Pages.ByPublishDate "Section" "post") }}
   <ul class=posts_listing>
-    {{ range where .Data.Pages.ByPublishDate "Section" "post" }}
+    {{ range $paginator.Pages }}
       <li>
         <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         <div id=date>
@@ -11,6 +12,7 @@
       </li>
     {{ end }}
   </ul>
+{{ template "_internal/pagination.html" . }}
 </section>
 
 {{ partial "footer.html" . }}
