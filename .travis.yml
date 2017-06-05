@@ -1,5 +1,7 @@
 language: r
 sudo: false
+latex: false
+pandoc: false
 cache: packages
 
 before_install:
