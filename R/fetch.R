@@ -17,9 +17,10 @@ for (i in seq_len(NROW(m))) {
   if (NROW(s) == 0 || is.na(s$favorite_count[1])) next
 
   m[i, 'since_id'] = s$status_id[1]  # update since_id for newer results next time
+  u = rtweet::users_data(s)
   k = order(s$favorite_count, s$retweet_count, decreasing = TRUE)
   s = s[k, ]
-  u = rtweet::users_data(s)[k, ]
+  u = u[k, ]
   if ((n2 <- s$favorite_count[1]) >= n) {
     n = n2; t = gsub('\\s+', ' ', s$text[1])
   }
