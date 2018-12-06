@@ -28,7 +28,7 @@ for (i in seq_len(NROW(m))) {
   s$text = gsub('\n\n', '\n>\n', s$text)
   s$text = paste(s$text, sprintf(' [&#8618;](https://twitter.com/xieyihui/status/%s)', s$status_id))
   x = c(
-    x, paste('#', q), '',
+    x, paste('#', gsub(' .+', '', q)), '',
     paste0('> **', u$name, '** (@', u$screen_name, '; ', s$favorite_count, '/',
            s$retweet_count, '): ', s$text, '\n\n<!-- -->\n\n')
   )
