@@ -4,3 +4,5 @@
 "knitr","1070465519764103168"
 "xaringan","1070332719350104064"
 "yihui.name","1070264335077949440"
+"tinytex -tinytex1989", "0"
+"pagedown paged.js OR pagedown url:rstudio OR url:pagedown.rbind.io", "0"
