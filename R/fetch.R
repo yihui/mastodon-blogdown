@@ -34,7 +34,7 @@ for (i in seq_len(NROW(m))) {
   x = c(
     x, paste('#', gsub(' .+', '', q)), '',
     paste0('> **', u$name, '** (@', u$screen_name, '; ', s$favorite_count, '/',
-           s$retweet_count, '): ', s$text, '\n\n<!-- -->\n\n')
+           s$retweet_count, '): ', gsub('\n', '\n> ', s$text), '\n\n<!-- -->\n\n')
   )
   Sys.sleep(1)
 }
