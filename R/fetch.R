@@ -10,11 +10,15 @@ if (!file.exists(f <- 'R/keywords.csv')) writeLines('query,since_id', f)
 m = read.csv(f, colClasses = 'character')
 d = as.character(d)
 x = NULL; t = paste('Tweets on', d); n = 0  # markdown text, post title, and favorite count
+ids = NULL  # ids of tweets that have already been included in the post
 
 for (i in seq_len(NROW(m))) {
   q = m[i, 'query']
   s = rtweet::search_tweets(q, include_rts = FALSE, since_id = m[i, 'since_id'])
   if (NROW(s) == 0 || is.na(s$favorite_count[1])) next
+  s = s[!(s$status_id %in% ids), ]
+  if (nrow(s) == 0) next
+  ids = c(ids, s$status_id)
 
   m[i, 'since_id'] = s$status_id[1]  # update since_id for newer results next time
   u = rtweet::users_data(s)
