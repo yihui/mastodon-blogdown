@@ -1,9 +1,9 @@
 "query","since_id","threshold"
-"#rstats","1125156866663776256",200
-"blogdown","1126117805424893954",1
-"bookdown","1124229874116431872",1
-"knitr","1125659578497142784",1
-"pagedown paged.js OR pagedown url:rstudio OR url:pagedown.rbind.io","1121000986523381761",1
-"tinytex -tinytex1989","1124259209569275905",1
-"xaringan","1125852042575142912",1
-"yihui.name","1125894829156851714",1
+"#rstats","1128412750286340096",200
+"blogdown","1128656861203447813",1
+"bookdown","1128670138579017730",1
+"knitr","1128541823041929219",1
+"pagedown paged.js OR pagedown url:rstudio OR url:pagedown.rbind.io","1127503029085790210",1
+"tinytex -tinytex1989","1128254251661168640",1
+"xaringan","1128422915916075008",1
+"yihui.name","1128471529711386625",1
