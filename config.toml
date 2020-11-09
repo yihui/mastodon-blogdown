@@ -29,7 +29,7 @@ paginate = 10
     weight = 4
 [[menu.main]]
     name = "Yihui's Homepage"
-    url  = "https://yihui.name"
+    url  = "https://yihui.org"
     weight = 5
 [[menu.main]]
     name = "Github"

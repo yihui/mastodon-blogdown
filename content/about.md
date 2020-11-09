@@ -11,7 +11,7 @@ This website is automatically built for my personal interest only. The basic ide
 
 Then I can subscribe to the RSS feed through an RSS reader, and know if anybody was trying to praise me in a corner yesterday.
 
-![Goose smile](https://slides.yihui.name/gif/goose-smile.gif)
+![Goose smile](https://slides.yihui.org/gif/goose-smile.gif)
 
 You are welcome to fork this project on [Github](https://github.com/yihui/twitter-blogdown), and use it by yourself. Some technical notes in case you want to do that:
 
