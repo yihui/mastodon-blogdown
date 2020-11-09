@@ -4,7 +4,8 @@ d = Sys.Date()
 
 p = list.files('content/post/', '^\\d{4,}-\\d{2}-\\d{2}[.]md$')
 p = max(as.Date(gsub('.md$', '', p)))
-if (length(p) && d <= p && !interactive()) q('no')
+# run at most once every 7 days
+if (length(p) && d < p + 7 && !interactive()) q('no')
 
 if (!file.exists(f <- 'R/keywords.csv')) writeLines('query,since_id', f)
 m = read.csv(f, colClasses = c('character', 'character', 'integer'))
