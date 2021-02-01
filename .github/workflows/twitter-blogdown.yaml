@@ -1,0 +1,31 @@
+on:
+  schedule:
+    - cron:  '0 12 * * 0'
+name: twitter-blogdown
+
+jobs:
+  fetch-tweets:
+    runs-on: macOS-latest
+    env:
+      TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@v1
+      - name: Cache R packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-R-packages
+      - name: Fetch Tweets
+        run: |
+          echo $TWITTER_TOKEN | base64 -d -o ~/.rtweet_token.rds
+          Rscript R/fetch.R
+      - name: Push results
+        run: |
+          rm ~/.rtweet_token.rds
+          git config --global user.email "xie@yihui.name"
+          git config --global user.name "Yihui Xie"
+          git add --all *
+          git commit -m"Daily update"
+          git push -q https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:master

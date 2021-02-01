@@ -1,4 +1,4 @@
-Sys.setenv(TWITTER_PAT = 'twitter_token.rds')
+Sys.setenv(TWITTER_PAT = '~/.rtweet_token.rds')
 dir.create('content/post', showWarnings = FALSE)
 d = Sys.Date()
 
@@ -6,6 +6,9 @@ p = list.files('content/post/', '^\\d{4,}-\\d{2}-\\d{2}[.]md$')
 p = max(as.Date(gsub('.md$', '', p)))
 # run at most once every 7 days
 if (length(p) && d < p + 7 && !interactive()) q('no')
+
+update.packages(ask = FALSE, checkBuilt = TRUE)
+if (!requireNamespace('rtweet', quietly = TRUE)) install.packages('rtweet')
 
 if (!file.exists(f <- 'R/keywords.csv')) writeLines('query,since_id', f)
 m = read.csv(f, colClasses = c('character', 'character', 'integer'))
