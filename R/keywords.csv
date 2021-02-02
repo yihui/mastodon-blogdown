@@ -1,6 +1,6 @@
 "query","since_id","threshold"
 "#rstats","1323756639929991169",200
-"blogdown -kieran_fifield","1323819830470987781",1
+"blogdown -kieran_fifield -Frohmannberlin","1323819830470987781",1
 "bookdown","1323971443563134976",1
 "knitr","1323851916854595585",1
 "pagedown paged.js OR pagedown url:rstudio OR url:pagedown.rbind.io","1323472559682236416",1
