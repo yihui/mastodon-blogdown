@@ -24,8 +24,6 @@ jobs:
       - name: Push results
         run: |
           rm ~/.rtweet_token.rds
-          git config --global user.email "xie@yihui.name"
-          git config --global user.name "Yihui Xie"
           git add --all *
           git commit -m"Weekly update"
           git push -q https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:master
