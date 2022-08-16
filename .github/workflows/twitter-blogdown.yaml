@@ -17,7 +17,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-R-packages
+          key: ${{ runner.os }}-${{ github.run_id }}
+          restore-keys: ${{ runner.os }}-
       - name: Fetch Tweets
         run: |
           echo $TWITTER_TOKEN | base64 -d -o ~/default.rds
