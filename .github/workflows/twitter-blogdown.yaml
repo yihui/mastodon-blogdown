@@ -20,11 +20,11 @@ jobs:
           key: ${{ runner.os }}-R-packages
       - name: Fetch Tweets
         run: |
-          echo $TWITTER_TOKEN | base64 -d -o ~/.rtweet_token.rds
+          echo $TWITTER_TOKEN | base64 -d -o ~/default.rds
           Rscript R/fetch.R
       - name: Push results
         run: |
-          rm ~/.rtweet_token.rds
+          rm ~/default.rds
           git add --all *
           git commit -m"Weekly update"
           git push -q https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:master

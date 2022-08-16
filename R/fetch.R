@@ -1,4 +1,4 @@
-Sys.setenv(TWITTER_PAT = '~/.rtweet_token.rds')
+options('rtweet:::config_dir' = normalizePath('~'))
 dir.create('content/post', showWarnings = FALSE)
 d = Sys.Date()
 
