@@ -5,6 +5,7 @@ languagecode = "en"
 theme = "hugo-black-and-light-theme"
 paginate = 10
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
+rssLimit = 30
 
 [permalinks]
   post = "/post/:year/:month/:day/"
