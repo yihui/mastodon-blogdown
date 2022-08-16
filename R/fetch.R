@@ -15,12 +15,15 @@ for (i in seq_len(NROW(m))) {
   q = m[i, 'query']
   s = rtweet::search_tweets(q, n = 1000, include_rts = FALSE, since_id = m[i, 'since_id'])
   if (NROW(s) == 0 || is.na(s$favorite_count[1])) next
-  s = s[!(s$status_id %in% ids) & (s$favorite_count + s$retweet_count >= m[i, 'threshold']), ]
-  if (nrow(s) == 0) next
-  ids = c(ids, s$status_id)
-
-  m[i, 'since_id'] = s$status_id[1]  # update since_id for newer results next time
   u = rtweet::users_data(s)
+  k = !(s$id_str %in% ids) & (s$favorite_count + s$retweet_count >= m[i, 'threshold']) &
+    (unlist(lapply(s$entities, function(x) sum(!is.na(x$hashtags$text)))) < 10)
+  s = s[k, ]
+  u = u[k, ]
+  if (nrow(s) == 0) next
+  ids = c(ids, s$id_str)
+
+  m[i, 'since_id'] = s$id_str[1]  # update since_id for newer results next time
   k = order(s$favorite_count, s$retweet_count, decreasing = TRUE)
   s = s[k, ]
   u = u[k, ]
@@ -29,7 +32,7 @@ for (i in seq_len(NROW(m))) {
   }
   s$text = gsub('\\s*$', '', s$text)
   s$text = gsub('\n\n', '\n>\n', s$text)
-  s$text = paste(s$text, sprintf(' [&#8618;](https://twitter.com/%s/status/%s)', s$screen_name, s$status_id))
+  s$text = paste(s$text, sprintf(' [&#8618;](https://twitter.com/%s/status/%s)', u$screen_name, s$id_str))
   x = c(
     x, paste('#', gsub(' .+', '', q)), '',
     paste0('> **', u$name, '** (@', u$screen_name, '; ', s$favorite_count, '/',
